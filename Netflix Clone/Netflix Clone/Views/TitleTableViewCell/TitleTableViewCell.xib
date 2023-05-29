@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleAspectFit" selectionStyle="default" indentationWidth="10" reuseIdentifier="TitleTableViewCell" rowHeight="217" id="KGk-i7-Jjw" customClass="TitleTableViewCell" customModule="Netflix_Clone" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="589" height="194"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="589" height="194"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bQA-VA-wgS">
+                        <rect key="frame" x="0.0" y="5" width="289" height="184"/>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2VM-7g-RuJ">
+                        <rect key="frame" x="299" y="87" width="255" height="20.5"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="v1N-qr-iRZ">
+                        <rect key="frame" x="559" y="75" width="25" height="44"/>
+                        <color key="tintColor" systemColor="labelColor"/>
+                        <state key="normal" title="Button"/>
+                        <buttonConfiguration key="configuration" style="plain" image="play.circle" catalog="system">
+                            <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="25"/>
+                        </buttonConfiguration>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="bQA-VA-wgS" secondAttribute="trailing" constant="300" id="FYY-dX-gFi"/>
+                    <constraint firstItem="v1N-qr-iRZ" firstAttribute="leading" secondItem="2VM-7g-RuJ" secondAttribute="trailing" constant="5" id="KaV-Mf-m5u"/>
+                    <constraint firstItem="v1N-qr-iRZ" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="NwS-wI-hOk"/>
+                    <constraint firstItem="2VM-7g-RuJ" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Qdz-6w-mPM"/>
+                    <constraint firstAttribute="bottom" secondItem="bQA-VA-wgS" secondAttribute="bottom" constant="5" id="URf-rf-LZp"/>
+                    <constraint firstItem="bQA-VA-wgS" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="W5N-ss-0eo"/>
+                    <constraint firstItem="v1N-qr-iRZ" firstAttribute="leading" secondItem="bQA-VA-wgS" secondAttribute="trailing" constant="270" id="lNh-JH-0E2"/>
+                    <constraint firstItem="bQA-VA-wgS" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="sam-VQ-vme"/>
+                    <constraint firstItem="2VM-7g-RuJ" firstAttribute="leading" secondItem="bQA-VA-wgS" secondAttribute="trailing" constant="10" id="tya-e4-Hd8"/>
+                    <constraint firstAttribute="trailing" secondItem="v1N-qr-iRZ" secondAttribute="trailing" constant="5" id="yev-UN-9GY"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="playButtonPressed" destination="v1N-qr-iRZ" id="xlV-Vx-vVM"/>
+                <outlet property="titleImageView" destination="bQA-VA-wgS" id="b3e-fn-UFJ"/>
+                <outlet property="titleLabel" destination="2VM-7g-RuJ" id="ZF6-wA-aCR"/>
+            </connections>
+            <point key="canvasLocation" x="332.60869565217394" y="113.83928571428571"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="play.circle" catalog="system" width="128" height="121"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

@@ -63,7 +63,6 @@ extension SearchViewController: UISearchResultsUpdating {
         guard let text = searchController.searchBar.text, !text.trimmingCharacters(in: .whitespaces).isEmpty,
               text.trimmingCharacters(in: .whitespaces).count > 2 ,
               let resultController = searchController.searchResultsController as? SearchResultViewController else {return}
-        print("-->", resultController)
         Networking.shared.search(with: text) { result in
             DispatchQueue.main.async {
                 switch result {

@@ -30,12 +30,9 @@ class Networking {
                     let results = try decoder.decode(AllData.self, from: data)
                     guard let myResults = results.results else {return}
                     completion(.success(myResults))
-//                        print(myResults)
                 } catch {
                     completion(.failure(error))
-                    print(error)
                 }
-                
             }
             dataTask.resume()
     }
@@ -56,7 +53,6 @@ class Networking {
                     let results = try decoder.decode(AllData.self, from: data)
                     guard let myResults = results.results else {return}
                     completion(.success(myResults))
-    //                        print(myResults)
                 } catch {
                     completion(.failure(error))
                     print(error)
@@ -91,7 +87,6 @@ class Networking {
                     print(error)
                                
                 }
-
             }
             task.resume()
         }

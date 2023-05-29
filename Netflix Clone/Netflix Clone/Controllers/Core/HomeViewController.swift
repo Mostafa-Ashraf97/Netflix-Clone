@@ -125,19 +125,9 @@ func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> U
         230
     }
     
-    
-//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-//        let myHeaderView = MyHeaderView()
-//        myHeaderView.headerImageView.image = UIImage(named: "img1")
-//        return myHeaderView
-//    }
     func tableView(_ tableView: UITableView, estimatedHeightForHeaderInSection section: Int) -> CGFloat {
         80
     }
-    
-   
-
-    
 }
 
 

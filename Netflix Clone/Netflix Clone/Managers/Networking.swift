@@ -8,6 +8,7 @@
 import Foundation
 
 let APIKey = "78ebc7dcbb138a974637b43f956efbdc"
+let youtubeAPIKey = "AIzaSyDqX8axTGeNpXRiISTGL7Tya7fjKJDYi4g"
 
 
 class Networking {
@@ -40,7 +41,7 @@ class Networking {
     
     func getDiscoverdMovies(with keyWord: String, completion: @escaping (Result<[Title], Error>) -> Void) {
             
-        guard let url = URL(string: "https://api.themoviedb.org/3/discover/movie?api_key=\(APIKey)&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1&with_watch_monetization_types=flatrate") else {return }
+        guard let url = URL(string: "https://api.themoviedb.org/3/discover/movie?api_key=\(APIKey)") else {return }
         
             let session = URLSession.shared
             let dataTask = session.dataTask(with: url) { data,
@@ -65,9 +66,9 @@ class Networking {
     func search(with query: String, completion: @escaping (Result<[Title], Error>) -> Void) {
             
             guard let query = query.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) else {return}
-            guard let url = URL(string: "https://api.themoviedb.org/3/search/movie?api_key=\(APIKey)&query=\(query)") else {
-                return
-            }
+           
+        guard let url = URL(string: "https://api.themoviedb.org/3/search/movie?api_key=\(APIKey)&query=\(query)") else {return}
+        
             
             let task = URLSession.shared.dataTask(with: URLRequest(url: url)) { data,
                 response,
@@ -90,6 +91,36 @@ class Networking {
             }
             task.resume()
         }
+    
+    func getTitlePreview(with query: String, completion: @escaping (Result<VideoElement, Error>) -> Void) {
+            
+            guard let query = query.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) else {return}
+            guard let url = URL(string: "https://youtube.googleapis.com/youtube/v3/search?q=\(query)&key=\(youtubeAPIKey)") else {
+                return
+            }
+            
+            let task = URLSession.shared.dataTask(with: URLRequest(url: url)) { data,
+                response,
+                error in
+                
+                guard let data = data else {
+                    return
+                }
+                
+                do {
+                    let results = try JSONDecoder().decode(YoutubeSearchResponse.self, from: data)
+                    guard let myResults = results.items else {return}
+                    completion(.success(myResults[0]))
+
+                } catch {
+                    completion(.failure(error))
+                    print(error)
+                               
+                }
+            }
+            task.resume()
+        }
+    
     
 }
    

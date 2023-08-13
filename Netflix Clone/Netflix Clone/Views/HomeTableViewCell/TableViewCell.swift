@@ -10,6 +10,8 @@ import SDWebImage
 
 class TableViewCell: UITableViewCell {
     
+    weak var delegate:passDataToTitlePreviewVC?
+    
     @IBOutlet var myCollectionView: UICollectionView!
     
     let collectionIdentifier = "CollectionViewCell"
@@ -45,12 +47,35 @@ extension TableViewCell: UICollectionViewDataSource,UICollectionViewDelegate,UIC
 
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        myCollectionView.deselectItem(at: indexPath, animated: true)
+        
+        let model = titleArray[indexPath.item]
+        let titleName = model.originalTitle ?? model.name ?? model.originalName ?? model.title ?? ""
+        let titleSearch = titleName + " Trailer"
+        Networking.shared.getTitlePreview(with: titleSearch) { result in
+            switch result {
+            case .success(let movie):
+                self.delegate?.setupTitlePreview(title: titleName , overview: model.overview ?? "", webView: movie.id?.videoId ?? "")
+//                let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "story") as! TitlePreviewViewController
+                
+                
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+        
+        
+    }
+    
     func passTitleArray(title:[Title]) {
         self.titleArray = title
         DispatchQueue.main.async {
             self.myCollectionView.reloadData()
         }
     }
+    
+    
     
     
 }

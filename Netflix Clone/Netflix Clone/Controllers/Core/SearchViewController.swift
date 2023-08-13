@@ -12,6 +12,7 @@ class SearchViewController: UIViewController {
     var titles = [Title]()
 
     @IBOutlet weak var searchTableView: UITableView!
+    var searchResultViewController: SearchResultViewController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,7 +34,7 @@ class SearchViewController: UIViewController {
         }
         
         let story = UIStoryboard(name: "Main", bundle: nil)
-        let searchResultViewController =  story.instantiateViewController(withIdentifier: "SearchResultViewController") as! SearchResultViewController
+         searchResultViewController =  story.instantiateViewController(withIdentifier: "SearchResultViewController") as! SearchResultViewController
         let mySearchController = UISearchController(searchResultsController: searchResultViewController)
         navigationItem.searchController = mySearchController
         mySearchController.searchBar.placeholder = "Search for a Movie or a TV Show"

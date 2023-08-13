@@ -20,9 +20,10 @@ class MyHeaderView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadNib()
-        headerImageView.image = UIImage(named: "wick")
+//        headerImageView.image = UIImage(named: "wick")
 //        addGradient()
         setupButtons()
+        randomPoster()
         
     }
     
@@ -53,6 +54,21 @@ class MyHeaderView: UIView {
         downloadButton.layer.borderWidth = 2
         downloadButton.layer.cornerRadius = 6
     }
-
+    
+    func randomPoster() {
+        Networking.shared.fetchData(with: #"trending/movie/day"#) { results in
+            switch results {
+            case .success(let movie):
+                let randomMovie = movie.randomElement()
+                let randomPoster = randomMovie?.posterPath
+                guard let url = URL(string: "https://image.tmdb.org/t/p/w500/\(randomPoster ?? "")") else { return }
+//                DispatchQueue.main.async {
+                self.headerImageView.sd_setImage(with: url)
+//                }
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
     
 }

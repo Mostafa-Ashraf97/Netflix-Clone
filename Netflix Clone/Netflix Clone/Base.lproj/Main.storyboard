@@ -127,10 +127,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="1m5-TV-h9l">
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="1m5-TV-h9l">
                                 <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Oqb-5j-UNy">
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="Oqb-5j-UNy">
                                     <size key="itemSize" width="128" height="128"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -198,9 +198,11 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="dTs-5U-fIf" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Home" image="house" catalog="system" selectedImage="house.fill" id="Xfr-ym-MmE"/>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="jLJ-aM-6aw">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" backIndicatorImage="back" id="jLJ-aM-6aw">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" systemColor="labelColor"/>
+                        <color key="barTintColor" systemColor="labelColor"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -271,9 +273,66 @@
             </objects>
             <point key="canvasLocation" x="673.91304347826087" y="-269.19642857142856"/>
         </scene>
+        <!--Title Preview View Controller-->
+        <scene sceneID="lVV-3O-vAy">
+            <objects>
+                <viewController storyboardIdentifier="story" useStoryboardIdentifierAsRestorationIdentifier="YES" id="vQG-4J-T4T" customClass="TitlePreviewViewController" customModule="Netflix_Clone" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="NiZ-sO-hob">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mLR-mB-OHl">
+                                <rect key="frame" x="5" y="54" width="404" height="272"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R1w-hG-aAn">
+                                <rect key="frame" x="20" y="383" width="374" height="480"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tnl-sZ-n3l">
+                                <rect key="frame" x="10" y="313" width="394" height="121"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="30"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="b4w-uY-cXr"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="b4w-uY-cXr" firstAttribute="bottom" secondItem="mLR-mB-OHl" secondAttribute="bottom" constant="536" id="BXm-oE-3Rq"/>
+                            <constraint firstItem="tnl-sZ-n3l" firstAttribute="leading" secondItem="b4w-uY-cXr" secondAttribute="leading" constant="10" id="NpJ-h5-Qen"/>
+                            <constraint firstItem="b4w-uY-cXr" firstAttribute="bottom" secondItem="tnl-sZ-n3l" secondAttribute="bottom" constant="428" id="WVQ-sC-mVE"/>
+                            <constraint firstItem="R1w-hG-aAn" firstAttribute="top" secondItem="tnl-sZ-n3l" secondAttribute="bottom" constant="-51" id="Yda-BC-U2R"/>
+                            <constraint firstItem="b4w-uY-cXr" firstAttribute="trailing" secondItem="mLR-mB-OHl" secondAttribute="trailing" constant="5" id="cYp-tc-U5D"/>
+                            <constraint firstItem="R1w-hG-aAn" firstAttribute="leading" secondItem="b4w-uY-cXr" secondAttribute="leading" constant="20" id="gWk-oU-Gd9"/>
+                            <constraint firstItem="b4w-uY-cXr" firstAttribute="bottom" secondItem="R1w-hG-aAn" secondAttribute="bottom" constant="-1" id="gwa-ol-L9v"/>
+                            <constraint firstItem="b4w-uY-cXr" firstAttribute="trailing" secondItem="R1w-hG-aAn" secondAttribute="trailing" constant="20" id="jSJ-tB-PNK"/>
+                            <constraint firstItem="mLR-mB-OHl" firstAttribute="leading" secondItem="b4w-uY-cXr" secondAttribute="leading" constant="5" id="pgy-Q2-08X"/>
+                            <constraint firstItem="b4w-uY-cXr" firstAttribute="trailing" secondItem="tnl-sZ-n3l" secondAttribute="trailing" constant="10" id="qnJ-3B-kBi"/>
+                            <constraint firstItem="tnl-sZ-n3l" firstAttribute="top" secondItem="mLR-mB-OHl" secondAttribute="bottom" constant="-13" id="z2N-B1-8Pu"/>
+                            <constraint firstItem="mLR-mB-OHl" firstAttribute="top" secondItem="b4w-uY-cXr" secondAttribute="top" constant="10" id="z7e-0C-A0P"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="myOverviewLabel" destination="R1w-hG-aAn" id="teJ-qE-Zut"/>
+                        <outlet property="myTitleLabel" destination="tnl-sZ-n3l" id="6q5-Pr-b8J"/>
+                        <outlet property="myWebView" destination="mLR-mB-OHl" id="Wyj-YD-ZsY"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vEC-lf-Xy6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="678.26086956521749" y="464.73214285714283"/>
+        </scene>
     </scenes>
     <resources>
         <image name="arrow.down.to.line.alt" catalog="system" width="128" height="128"/>
+        <image name="back" width="128" height="128"/>
         <image name="house" catalog="system" width="128" height="106"/>
         <image name="house.fill" catalog="system" width="128" height="106"/>
         <image name="magnifyingglass" catalog="system" width="128" height="115"/>

@@ -60,5 +60,4 @@ extension UpcomingViewController: UITableViewDataSource,UITableViewDelegate {
         return 160
     }
     
-    didse
 }

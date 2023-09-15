@@ -58,6 +58,7 @@ extension TableViewCell: UICollectionViewDataSource,UICollectionViewDelegate,UIC
             case .success(let movie):
                 self.delegate?.setupTitlePreview(title: titleName , overview: model.overview ?? "", webView: movie.id?.videoId ?? "")
 //                let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "story") as! TitlePreviewViewController
+//                self.navigationcontroller
                 
                 
             case .failure(let error):

@@ -62,13 +62,12 @@ extension SearchResultViewController:UICollectionViewDataSource, UICollectionVie
             switch result {
             case .success(let movie):
 //                self.delegate?.setupTitlePreview(title: titleName , overview: model.overview ?? "", webView: movie.id?.videoId ?? "")
+                let vc1 = self.storyboard?.instantiateViewController(withIdentifier: "story") as! TitlePreviewViewController
+                vc1.setupTitlePreview(title: titleName, overview: model.overview ?? "", webView: movie.id?.videoId ?? "")
                 DispatchQueue.main.async {
         //            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                    let vc1 = self.storyboard?.instantiateViewController(withIdentifier: "story") as! TitlePreviewViewController
 
                     self.navigationController?.pushViewController(vc1, animated: true)
-
-                    vc1.setupTitlePreview(title: titleName, overview: model.overview ?? "", webView: movie.id?.videoId ?? "")
 
                 }
 //                let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "story") as! TitlePreviewViewController

@@ -15,7 +15,7 @@ class SearchResultViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = .blue
+        self.view.backgroundColor = .systemBackground
         searchCollectionView.register(
             UINib(
                 nibName: CollectionViewCell.cellIdentifier,
@@ -47,10 +47,10 @@ extension SearchResultViewController:UICollectionViewDataSource, UICollectionVie
         
         return CGSize(width: itemDimension, height: itemDimension)
     }
-    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        super.viewWillTransition(to: size, with: coordinator)
-        self.searchCollectionView.collectionViewLayout.invalidateLayout()
-    }
+//    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+//        super.viewWillTransition(to: size, with: coordinator)
+//        self.searchCollectionView.collectionViewLayout.invalidateLayout()
+//    }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         searchCollectionView.deselectItem(at: indexPath, animated: true)

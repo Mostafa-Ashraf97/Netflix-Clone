@@ -8,20 +8,16 @@
 import UIKit
 
 class SearchResultViewController: UIViewController {
+    
     var searchedArray:[Title] = []
-    
-    
+    var vc1: TitlePreviewViewController?
     @IBOutlet weak var searchCollectionView: UICollectionView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .systemBackground
         searchCollectionView.register(
-            UINib(
-                nibName: CollectionViewCell.cellIdentifier,
-                bundle: nil
-            ),
-            forCellWithReuseIdentifier: CollectionViewCell.cellIdentifier
+            UINib(nibName: CollectionViewCell.cellIdentifier,bundle: nil),forCellWithReuseIdentifier: CollectionViewCell.cellIdentifier
         )
     }
 }
@@ -47,38 +43,17 @@ extension SearchResultViewController:UICollectionViewDataSource, UICollectionVie
         
         return CGSize(width: itemDimension, height: itemDimension)
     }
-//    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-//        super.viewWillTransition(to: size, with: coordinator)
-//        self.searchCollectionView.collectionViewLayout.invalidateLayout()
-//    }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        searchCollectionView.deselectItem(at: indexPath, animated: true)
-        
         let model = searchedArray[indexPath.item]
         let titleName = model.originalTitle ?? model.name ?? model.originalName ?? model.title ?? ""
-        let titleSearch = titleName + " Trailer"
-        Networking.shared.getTitlePreview(with: titleSearch) { result in
-            switch result {
-            case .success(let movie):
-//                self.delegate?.setupTitlePreview(title: titleName , overview: model.overview ?? "", webView: movie.id?.videoId ?? "")
-                let vc1 = self.storyboard?.instantiateViewController(withIdentifier: "story") as! TitlePreviewViewController
-                vc1.setupTitlePreview(title: titleName, overview: model.overview ?? "", webView: movie.id?.videoId ?? "")
-                DispatchQueue.main.async {
-        //            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-
-                    self.navigationController?.pushViewController(vc1, animated: true)
-
-                }
-//                let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "story") as! TitlePreviewViewController
-                
-                
-            case .failure(let error):
-                print(error.localizedDescription)
-            }
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        DispatchQueue.main.async {
+            guard let vc1 = storyboard.instantiateViewController(withIdentifier: "story") as? TitlePreviewViewController else { return }
+            vc1.titleName = titleName
+            vc1.model = model
+            //        self.present(vc1, animated: true)
+            self.presentingViewController?.navigationController?.pushViewController(vc1, animated: true)
         }
-        
-        
     }
-    
 }

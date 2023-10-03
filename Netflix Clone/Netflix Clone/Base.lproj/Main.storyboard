@@ -221,9 +221,11 @@
                         <color key="badgeColor" systemColor="labelColor"/>
                     </tabBarItem>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="aFi-41-d2i">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" backIndicatorImage="back" largeTitles="YES" id="aFi-41-d2i">
                         <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" systemColor="labelColor"/>
+                        <color key="barTintColor" systemColor="labelColor"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -289,29 +291,34 @@
                                     <wkPreferences key="preferences"/>
                                 </wkWebViewConfiguration>
                             </wkWebView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R1w-hG-aAn">
-                                <rect key="frame" x="20" y="383" width="374" height="480"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R1w-hG-aAn">
+                                <rect key="frame" x="20" y="409" width="374" height="0.0"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tnl-sZ-n3l">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tnl-sZ-n3l">
                                 <rect key="frame" x="10" y="313" width="394" height="121"/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="30"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="TpP-cO-27t">
+                                <rect key="frame" x="197" y="438" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="b4w-uY-cXr"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="b4w-uY-cXr" firstAttribute="bottom" secondItem="mLR-mB-OHl" secondAttribute="bottom" constant="536" id="BXm-oE-3Rq"/>
+                            <constraint firstItem="TpP-cO-27t" firstAttribute="centerX" secondItem="NiZ-sO-hob" secondAttribute="centerX" id="JgI-Ty-l67"/>
                             <constraint firstItem="tnl-sZ-n3l" firstAttribute="leading" secondItem="b4w-uY-cXr" secondAttribute="leading" constant="10" id="NpJ-h5-Qen"/>
+                            <constraint firstItem="TpP-cO-27t" firstAttribute="centerY" secondItem="NiZ-sO-hob" secondAttribute="centerY" id="Oic-Gw-79G"/>
                             <constraint firstItem="b4w-uY-cXr" firstAttribute="bottom" secondItem="tnl-sZ-n3l" secondAttribute="bottom" constant="428" id="WVQ-sC-mVE"/>
-                            <constraint firstItem="R1w-hG-aAn" firstAttribute="top" secondItem="tnl-sZ-n3l" secondAttribute="bottom" constant="-51" id="Yda-BC-U2R"/>
+                            <constraint firstItem="R1w-hG-aAn" firstAttribute="top" secondItem="tnl-sZ-n3l" secondAttribute="bottom" constant="-25" id="Yda-BC-U2R"/>
                             <constraint firstItem="b4w-uY-cXr" firstAttribute="trailing" secondItem="mLR-mB-OHl" secondAttribute="trailing" constant="5" id="cYp-tc-U5D"/>
                             <constraint firstItem="R1w-hG-aAn" firstAttribute="leading" secondItem="b4w-uY-cXr" secondAttribute="leading" constant="20" id="gWk-oU-Gd9"/>
-                            <constraint firstItem="b4w-uY-cXr" firstAttribute="bottom" secondItem="R1w-hG-aAn" secondAttribute="bottom" constant="-1" id="gwa-ol-L9v"/>
+                            <constraint firstItem="b4w-uY-cXr" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="R1w-hG-aAn" secondAttribute="bottom" constant="-1" id="gwa-ol-L9v"/>
                             <constraint firstItem="b4w-uY-cXr" firstAttribute="trailing" secondItem="R1w-hG-aAn" secondAttribute="trailing" constant="20" id="jSJ-tB-PNK"/>
                             <constraint firstItem="mLR-mB-OHl" firstAttribute="leading" secondItem="b4w-uY-cXr" secondAttribute="leading" constant="5" id="pgy-Q2-08X"/>
                             <constraint firstItem="b4w-uY-cXr" firstAttribute="trailing" secondItem="tnl-sZ-n3l" secondAttribute="trailing" constant="10" id="qnJ-3B-kBi"/>
@@ -320,6 +327,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="activityIndicator" destination="TpP-cO-27t" id="myf-SU-1aW"/>
                         <outlet property="myOverviewLabel" destination="R1w-hG-aAn" id="teJ-qE-Zut"/>
                         <outlet property="myTitleLabel" destination="tnl-sZ-n3l" id="6q5-Pr-b8J"/>
                         <outlet property="myWebView" destination="mLR-mB-OHl" id="Wyj-YD-ZsY"/>

@@ -10,17 +10,17 @@ import UIKit
 class SearchViewController: UIViewController {
     
     var titles = [Title]()
-
     @IBOutlet weak var searchTableView: UITableView!
-    var searchResultViewController: SearchResultViewController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Search"
-        searchTableView.dataSource = self
-        searchTableView.delegate = self
-        searchTableView.register(UINib(nibName: TitleTableViewCell.cellIdentifier, bundle: nil), forCellReuseIdentifier: TitleTableViewCell.cellIdentifier)
-        
+        setupTableView()
+        fetchData()
+        navigatingToSearchResultVC()
+    }
+    
+    func fetchData() {
         Networking.shared.getDiscoverdMovies(with: "") { results in
             switch results {
             case .success(let title) :
@@ -32,13 +32,21 @@ class SearchViewController: UIViewController {
                 print(error.localizedDescription)
             }
         }
-        
+    }
+    
+    func navigatingToSearchResultVC(){
         let story = UIStoryboard(name: "Main", bundle: nil)
-         searchResultViewController =  story.instantiateViewController(withIdentifier: "SearchResultViewController") as! SearchResultViewController
+        let searchResultViewController =  story.instantiateViewController(withIdentifier: "SearchResultViewController") as! SearchResultViewController
         let mySearchController = UISearchController(searchResultsController: searchResultViewController)
         navigationItem.searchController = mySearchController
         mySearchController.searchBar.placeholder = "Search for a Movie or a TV Show"
         mySearchController.searchResultsUpdater = self
+    }
+    
+    func setupTableView(){
+        searchTableView.dataSource = self
+        searchTableView.delegate = self
+        searchTableView.register(UINib(nibName: TitleTableViewCell.cellIdentifier, bundle: nil), forCellReuseIdentifier: TitleTableViewCell.cellIdentifier)
     }
 }
 
@@ -53,10 +61,10 @@ extension SearchViewController: UITableViewDataSource,UITableViewDelegate {
         cell.configure(poster: myTitle.posterPath ?? "", title: myTitle.title ?? "Unknown")
         return cell
     }
+    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 160
     }
-    
 }
 
 extension SearchViewController: UISearchResultsUpdating {
@@ -74,10 +82,6 @@ extension SearchViewController: UISearchResultsUpdating {
                     print(error.localizedDescription)
                 }
             }
-            
         }
-        
     }
-    
-    
 }

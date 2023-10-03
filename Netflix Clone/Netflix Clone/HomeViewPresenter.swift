@@ -17,17 +17,11 @@ class HomeViewPresenter {
     
     let sectionTitles : [String] = ["Trending Movies","Popular","Trending TV","Upcoming Movies","Top Rated"]
     
-    
-    
-    
-    
     init(_ view : HomeView) {
         self.view = view
     }
     
-    
     func returnMovieArray(with cell : TableViewCell ,at indexPath: IndexPath) {
-        
         switch indexPath.section {
         case sections.TrendingMovies.rawValue:
             Networking.shared.fetchData(with: #"trending/movie/day"#) { results in
@@ -79,8 +73,6 @@ class HomeViewPresenter {
                     print(error.localizedDescription)
                 }
             }
-            
-
         default:
             cell.passTitleArray(title: [])
         }
